@@ -1,16 +1,23 @@
+/// \file
+
 #include <iostream>
 #include <cstdint>
 #include <imgui.h>
 
+/// A test union
+/*!
+  Contains a struct and an uint8_t array, both sharing the same memory space.
+ */
 union Test {
     struct {
         uint8_t x;
         uint8_t y;
         uint8_t z;
     };
-    uint8_t data[3];
+    uint8_t data[3]; ///< This contains xyz data
 };
 
+/// The program's entry point.
 int main() {
     IMGUI_CHECKVERSION();
 

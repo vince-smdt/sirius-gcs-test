@@ -50,3 +50,6 @@ out/
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+# Doxygen documentation
+doc

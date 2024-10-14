@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(untitled)
+project(sirius_gcs)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -10,4 +10,4 @@ file(GLOB IMGUI_SRC
     "lib/imgui/*.h"
 )
 
-add_executable(untitled main.cpp ${IMGUI_SRC})
+add_executable(sirius_gcs src/main.cpp ${IMGUI_SRC})
