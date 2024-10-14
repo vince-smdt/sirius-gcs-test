@@ -10,4 +10,8 @@ file(GLOB IMGUI_SRC
     "lib/imgui/*.h"
 )
 
+find_package(glfw3)
+find_package(glad)
+
 add_executable(sirius_gcs src/main.cpp ${IMGUI_SRC})
+target_link_libraries(sirius_gcs glfw glad::glad)
