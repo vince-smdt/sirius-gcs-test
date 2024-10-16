@@ -1,7 +1,6 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOGGING_H
+#define LOGGING_H
 
-#include <spdlog/spdlog.h>
 #include "ImGuiTextBufferSink.h"
 
 void gcsLoggerInit(ImGuiTextBuffer *buf);
@@ -12,4 +11,4 @@ void gcsLoggerInit(ImGuiTextBuffer *buf);
 #define GCS_LOG_TRACE(msg) spdlog::trace(msg)
 #define GCS_LOG_WARN(msg) spdlog::warn(msg)
 
-#endif //LOGGER_H
+#endif //LOGGING_H
