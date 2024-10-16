@@ -1,38 +1,31 @@
-#include"imgui.h"
-#include"imgui_impl_glfw.h"
-#include"imgui_impl_opengl3.h"
+#include <iostream>
 
-#include<iostream>
-#include<glad/glad.h>
-#include<GLFW/glfw3.h>
-#include<spdlog/spdlog.h>
-#include<spdlog/sinks/basic_file_sink.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-void logTest() {
-	try {
-		auto logger = spdlog::basic_logger_mt("file_logger", "logs/gcs-log.txt");
-		logger->flush_on(spdlog::level::trace);
-		logger->info("bien le bonjour");
-	}
-	catch (const spdlog::spdlog_ex &ex) {
-		std::cout << "Log init failed: " << ex.what() << std::endl;
-	}
-}
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
+#include "Logger.h"
+
+ImGuiTextBuffer buf;
 
 int main()
 {
-	logTest();
+	gcsLoggerInit(&buf);
+
+	GCS_LOG_TRACE("Starting program");
 
 	glfwInit();
-
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 800, "Sirius GCS", NULL, NULL);
-	if (window == NULL)
+	GLFWwindow* window = glfwCreateWindow(1920, 1080, "Sirius GCS", nullptr, nullptr);
+	if (window == nullptr)
 	{
-		std::cout << "Failed to create GLFW window" << std::endl;
+		GCS_LOG_ERROR("Failed to create GLFW window");
 		glfwTerminate();
 		return -1;
 	}
@@ -58,8 +51,19 @@ int main()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::Begin("Window");
-		ImGui::Text("Test");
+		ImGui::Begin("Controls");
+		ImGui::Button("Launch la fusée");
+		ImGui::End();
+
+		ImGui::Begin("Logs");
+		if (ImGui::Button("Add test log")) {
+			GCS_LOG_INFO("This is a test");
+		}
+		ImGui::Separator();
+		ImGui::BeginChild("scrolling", ImVec2(0, 0), ImGuiChildFlags_None, ImGuiWindowFlags_HorizontalScrollbar);
+		ImGui::TextUnformatted(buf.begin(), buf.end());
+		ImGui::EndChild();
+		ImGui::LogText("Bonjour");
 		ImGui::End();
 
 		ImGui::Render();
@@ -75,5 +79,6 @@ int main()
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	return 0;
+
+	GCS_LOG_TRACE("Terminating program");
 }

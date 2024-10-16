@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(lib/imgui)
 include_directories(lib/imgui/backends)
+
 file(GLOB IMGUI_SRC
         "lib/imgui/*.cpp"
         "lib/imgui/*.h"
@@ -18,8 +19,15 @@ find_package(glfw3)
 find_package(glad)
 find_package(spdlog)
 
-add_executable(sirius_gcs src/main.cpp ${IMGUI_SRC})
+add_executable(sirius_gcs ${IMGUI_SRC}
+        src/main.cpp
+        src/ImGuiTextBufferSink.cpp
+        src/ImGuiTextBufferSink.h
+        src/Logger.cpp
+        src/Logger.h
+)
 target_link_libraries(sirius_gcs
-                      glfw
-                      glad::glad
-                      spdlog::spdlog)
+        glfw
+        glad::glad
+        spdlog::spdlog
+)
