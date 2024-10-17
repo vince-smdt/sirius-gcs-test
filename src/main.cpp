@@ -8,12 +8,17 @@
 #include <imgui_impl_opengl3.h>
 
 #include "Logging.h"
-
-ImGuiTextBuffer buf;
+#include "ControlsWindow.h"
+#include "LoggingWindow.h"
 
 int main()
 {
+	ImGuiTextBuffer buf;
+
 	gcsLoggerInit(&buf);
+
+	ControlsWindow controlsWindow;
+	LoggingWindow loggingWindow(&buf);
 
 	GCS_LOG_TRACE("Starting program");
 
@@ -51,20 +56,8 @@ int main()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::Begin("Controls");
-		ImGui::Button("Launch la fusée");
-		ImGui::End();
-
-		ImGui::Begin("Logs");
-		if (ImGui::Button("Add test log")) {
-			GCS_LOG_INFO("This is a test");
-		}
-		ImGui::Separator();
-		ImGui::BeginChild("scrolling", ImVec2(0, 0), ImGuiChildFlags_None, ImGuiWindowFlags_HorizontalScrollbar);
-		ImGui::TextUnformatted(buf.begin(), buf.end());
-		ImGui::EndChild();
-		ImGui::LogText("Bonjour");
-		ImGui::End();
+		controlsWindow.draw();
+		loggingWindow.draw();
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
