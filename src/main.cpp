@@ -1,24 +1,13 @@
-#include <iostream>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
 
+#include "ImGuiManager.h"
 #include "Logging.h"
-#include "ControlsWindow.h"
-#include "LoggingWindow.h"
 
 int main()
 {
-	ImGuiTextBuffer buf;
-
-	gcsLoggerInit(&buf);
-
-	ControlsWindow controlsWindow;
-	LoggingWindow loggingWindow(&buf);
+	Logging::initSpdLog();
 
 	GCS_LOG_TRACE("Starting program");
 
@@ -39,12 +28,7 @@ int main()
 	gladLoadGL();
 	glViewport(0, 0, 800, 800);
 
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	const ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 330");
+	ImGuiManager::init(window);
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -52,23 +36,13 @@ int main()
 		glClearColor(0, 0, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-
-		controlsWindow.draw();
-		loggingWindow.draw();
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGuiManager::render();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+	ImGuiManager::shutdown();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

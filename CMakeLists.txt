@@ -7,7 +7,7 @@ include_directories(
         lib/imgui
         lib/imgui/backends
         src/logging
-        src/windows
+        src/gui
 )
 
 file(GLOB IMGUI_SRC
@@ -29,10 +29,12 @@ add_executable(sirius_gcs ${IMGUI_SRC}
         src/logging/ImGuiTextBufferSink.h
         src/logging/Logging.cpp
         src/logging/Logging.h
-        src/windows/ControlsWindow.cpp
-        src/windows/ControlsWindow.h
-        src/windows/LoggingWindow.cpp
-        src/windows/LoggingWindow.h
+        src/gui/ControlsWindow.cpp
+        src/gui/ControlsWindow.h
+        src/gui/LoggingWindow.cpp
+        src/gui/LoggingWindow.h
+        src/gui/ImGuiManager.cpp
+        src/gui/ImGuiManager.h
 )
 target_link_libraries(sirius_gcs
         glfw

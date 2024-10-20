@@ -3,7 +3,11 @@
 
 #include "ImGuiTextBufferSink.h"
 
-void gcsLoggerInit(ImGuiTextBuffer *buf);
+namespace Logging {
+    void initSpdLog();
+
+    inline ImGuiTextBuffer _buf;
+}
 
 #define GCS_LOG_DEBUG(msg) spdlog::debug(msg)
 #define GCS_LOG_ERROR(msg) spdlog::error(msg)
