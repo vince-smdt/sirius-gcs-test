@@ -9,6 +9,7 @@ public:
     void draw();
 private:
     ImGuiTextBuffer *_buf;
+    bool _autoScroll;
 };
 
 #endif //LOGGINGWINDOW_H
