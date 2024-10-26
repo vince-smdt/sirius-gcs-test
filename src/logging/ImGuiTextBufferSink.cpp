@@ -3,7 +3,7 @@
 void ImGuiTextBufferSink::sink_it_(const spdlog::details::log_msg &msg) {
     spdlog::memory_buf_t formatted;
     formatter_->format(msg, formatted);
-    buffer_->append(formatted.data(), formatted.data() + formatted.size());
+    _buffer->append(formatted.data(), formatted.data() + formatted.size());
 }
 
 void ImGuiTextBufferSink::flush_() {

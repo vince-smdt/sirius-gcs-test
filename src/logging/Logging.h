@@ -6,7 +6,7 @@
 namespace Logging {
     void initSpdLog();
 
-    inline ImGuiTextBuffer _buf;
+    inline ImGuiCircularLogTextBuffer _buf(2048); // TODO: Set max buffer size in constant somewhere
 }
 
 #define GCS_LOG_DEBUG(msg) spdlog::debug(msg)

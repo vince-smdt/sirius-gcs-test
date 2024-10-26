@@ -1,14 +1,14 @@
 #ifndef LOGGINGWINDOW_H
 #define LOGGINGWINDOW_H
 
-#include "imgui.h"
+#include "ImGuiCircularLogTextBuffer.h"
 
 class LoggingWindow {
 public:
-    LoggingWindow(ImGuiTextBuffer *buf);
+    explicit LoggingWindow(ImGuiCircularLogTextBuffer *buf);
     void draw();
 private:
-    ImGuiTextBuffer *_buf;
+    ImGuiCircularLogTextBuffer *_buf;
     bool _autoScroll;
 };
 

@@ -35,6 +35,8 @@ add_executable(sirius_gcs ${IMGUI_SRC}
         src/gui/LoggingWindow.h
         src/gui/ImGuiManager.cpp
         src/gui/ImGuiManager.h
+        src/logging/ImGuiCircularLogTextBuffer.cpp
+        src/logging/ImGuiCircularLogTextBuffer.h
 )
 target_link_libraries(sirius_gcs
         glfw
