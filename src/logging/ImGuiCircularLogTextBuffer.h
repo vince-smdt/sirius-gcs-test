@@ -7,10 +7,10 @@ class ImGuiCircularLogTextBuffer {
 public:
     explicit ImGuiCircularLogTextBuffer(int maxBufferSize);
     void append(const char* str, const char* strEnd = nullptr);
-    void textUnformatted();
+    void textUnformatted() const;
 private:
     void updateCapacity(size_t newDataSize);
-    const char* findFirstNewline();
+    void updateOutputBuffer();
 
     ImVector<char> _buffer;
     ImGuiTextBuffer _outputBuffer;

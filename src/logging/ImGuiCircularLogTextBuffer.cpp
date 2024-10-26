@@ -30,16 +30,11 @@ void ImGuiCircularLogTextBuffer::append(const char *str, const char* strEnd) {
             }
         }
     }
+
+    updateOutputBuffer();
 }
 
-void ImGuiCircularLogTextBuffer::textUnformatted() {
-    if (_writeIndex == 0) {
-        ImGui::TextUnformatted(_buffer.begin(), _buffer.end());
-        return;
-    }
-    _outputBuffer.clear();
-    _outputBuffer.append(&_buffer[_writeIndex], _buffer.end());
-    _outputBuffer.append(_buffer.begin(), &_buffer[_writeIndex - 1]);
+void ImGuiCircularLogTextBuffer::textUnformatted() const {
     ImGui::TextUnformatted(_outputBuffer.begin(), _outputBuffer.end());
 }
 
@@ -58,4 +53,14 @@ void ImGuiCircularLogTextBuffer::updateCapacity(const size_t newDataSize) {
     if (_buffer.capacity() > _maxBufferSize) {
         _buffer.reserve(_maxBufferSize);
     }
+}
+
+void ImGuiCircularLogTextBuffer::updateOutputBuffer() {
+    _outputBuffer.clear();
+    if (_writeIndex == 0) {
+        _outputBuffer.append(_buffer.begin(), _buffer.end());
+        return;
+    }
+    _outputBuffer.append(&_buffer[_writeIndex], _buffer.end());
+    _outputBuffer.append(_buffer.begin(), &_buffer[_writeIndex - 1]);
 }
