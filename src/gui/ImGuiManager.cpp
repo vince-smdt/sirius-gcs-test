@@ -15,7 +15,9 @@ void ImGuiManager::init(GLFWwindow* window) {
     ImGui_ImplOpenGL3_Init("#version 330");
 
     controlsWindow = std::make_unique<ControlsWindow>();
-    loggingWindow = std::make_unique<LoggingWindow>(&Logging::_buf);
+    loggingWindow = std::make_unique<LoggingWindow>();
+
+    Logging::linkLoggingWindow(loggingWindow.get());
 }
 
 void ImGuiManager::render() {

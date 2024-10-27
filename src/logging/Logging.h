@@ -1,12 +1,17 @@
 #ifndef LOGGING_H
 #define LOGGING_H
 
-#include "ImGuiTextBufferSink.h"
+#include <imgui.h>
+#include <spdlog/spdlog.h>
+
+#include "LoggingWindow.h"
 
 namespace Logging {
     void initSpdLog();
+    void updateSpdLog();
+    void linkLoggingWindow(LoggingWindow *loggingWindow);
 
-    inline ImGuiCircularLogTextBuffer _buf(2048); // TODO: Set max buffer size in constant somewhere
+    inline std::vector<spdlog::sink_ptr> _sinks;
 }
 
 #define GCS_LOG_DEBUG(msg) spdlog::debug(msg)

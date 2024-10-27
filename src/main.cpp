@@ -9,8 +9,6 @@ int main()
 {
 	Logging::initSpdLog();
 
-	GCS_LOG_TRACE("Starting program");
-
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -29,6 +27,8 @@ int main()
 	glViewport(0, 0, 800, 800);
 
 	ImGuiManager::init(window);
+
+	GCS_LOG_TRACE("Starting program");
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))

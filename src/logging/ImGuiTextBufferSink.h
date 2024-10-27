@@ -4,18 +4,18 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/base_sink.h>
 
-#include "ImGuiCircularLogTextBuffer.h"
+#include "LoggingWindow.h"
 
 class ImGuiTextBufferSink : public spdlog::sinks::base_sink<std::mutex> {
 public:
-    explicit ImGuiTextBufferSink(ImGuiCircularLogTextBuffer *buffer) : _buffer(buffer) {};
+    explicit ImGuiTextBufferSink(LoggingWindow *loggingWindow) : _loggingWindow(loggingWindow) {};
 
 protected:
     void sink_it_(const spdlog::details::log_msg &msg) override;
     void flush_() override;
 
 private:
-    ImGuiCircularLogTextBuffer *_buffer;
+    LoggingWindow *_loggingWindow;
 };
 
 #endif //IMGUITEXTBUFFERSINK_H
