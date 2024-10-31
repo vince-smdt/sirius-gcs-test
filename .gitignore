@@ -4,6 +4,7 @@
 
 *.sln
 *.vcxproj*
+imgui.ini
 
 ####################################################################
 # Visual Studio
@@ -409,3 +410,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+imgui.ini
