@@ -12,8 +12,8 @@ namespace ImGuiManager {
     void render();
     void shutdown();
 
-    inline std::unique_ptr<ControlsWindow> controlsWindow;
-    inline std::unique_ptr<LoggingWindow> loggingWindow;
+    extern std::unique_ptr<ControlsWindow> controlsWindow;
+    extern std::unique_ptr<LoggingWindow> loggingWindow;
 }
 
 #endif //IMGUIMANAGER_H

@@ -6,6 +6,11 @@
 
 #include "Logging.h"
 
+namespace ImGuiManager {
+    std::unique_ptr<ControlsWindow> controlsWindow;
+    std::unique_ptr<LoggingWindow> loggingWindow;
+}
+
 void ImGuiManager::init(GLFWwindow* window) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();

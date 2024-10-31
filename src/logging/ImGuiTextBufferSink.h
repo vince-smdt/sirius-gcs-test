@@ -1,7 +1,6 @@
 #ifndef IMGUITEXTBUFFERSINK_H
 #define IMGUITEXTBUFFERSINK_H
 
-#include <spdlog/spdlog.h>
 #include <spdlog/sinks/base_sink.h>
 
 #include "LoggingWindow.h"

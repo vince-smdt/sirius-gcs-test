@@ -1,7 +1,6 @@
 #ifndef LOGGING_H
 #define LOGGING_H
 
-#include <imgui.h>
 #include <spdlog/spdlog.h>
 
 #include "LoggingWindow.h"
@@ -11,7 +10,7 @@ namespace Logging {
     void updateSpdLog();
     void linkLoggingWindow(LoggingWindow *loggingWindow);
 
-    inline std::vector<spdlog::sink_ptr> _sinks;
+    extern std::vector<spdlog::sink_ptr> _sinks;
 }
 
 #define GCS_LOG_DEBUG(msg) spdlog::debug(msg)
