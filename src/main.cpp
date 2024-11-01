@@ -30,7 +30,6 @@ int main()
 
 	GCS_LOG_TRACE("Starting program");
 
-	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0, 0, 0.1f, 1.0f);

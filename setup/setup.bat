@@ -6,7 +6,7 @@ echo Installing git submodules...
 git submodule update --init --recursive
 
 REM Install dependencies
-.\vcpkg\bootstrap-vcpkg.sh
+call vcpkg\bootstrap-vcpkg.bat
 .\vcpkg\vcpkg install --host-triplet=x64-windows --x-install-root=vcpkg\installed
 .\vcpkg\vcpkg integrate install
 
