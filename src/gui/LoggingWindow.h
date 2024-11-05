@@ -8,7 +8,8 @@ public:
     explicit LoggingWindow();
     void draw();
     void clear();
-    void addLog(const char *str, const char *strEnd);
+    void addLog(const char* str, const char* strEnd);
+
 private:
     ImGuiTextBuffer _buf;
     ImGuiTextFilter _filter;
@@ -16,4 +17,4 @@ private:
     bool _autoScroll;
 };
 
-#endif //LOGGINGWINDOW_H
+#endif // LOGGINGWINDOW_H

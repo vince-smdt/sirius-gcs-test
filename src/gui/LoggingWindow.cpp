@@ -32,9 +32,8 @@ void LoggingWindow::draw() {
                     ImGui::TextUnformatted(lineStart, lineEnd);
                 }
             }
-        }
-        else {
-            ImGui::TextUnformatted(bufBegin,bufEnd);
+        } else {
+            ImGui::TextUnformatted(bufBegin, bufEnd);
         }
 
         if (_autoScroll && ImGui::GetScrollY() >= ImGui::GetScrollMaxY()) {
@@ -53,7 +52,7 @@ void LoggingWindow::clear() {
     _lineOffsets.push_back(0);
 }
 
-void LoggingWindow::addLog(const char *str, const char *strEnd) {
+void LoggingWindow::addLog(const char* str, const char* strEnd) {
     int oldSize = _buf.size();
     _buf.append(str, strEnd);
     for (const int newSize = _buf.size(); oldSize < newSize; oldSize++)

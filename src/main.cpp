@@ -1,50 +1,45 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <imgui.h>
-
 #include "ImGuiManager.h"
 #include "Logging.h"
 
-int main()
-{
-	Logging::initSpdLog();
+#include <GLFW/glfw3.h>
 
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+int main() {
+    Logging::initSpdLog();
 
-	GLFWwindow* window = glfwCreateWindow(1920, 1080, "Sirius GCS", nullptr, nullptr);
-	if (window == nullptr)
-	{
-		GCS_LOG_ERROR("Failed to create GLFW window");
-		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	gladLoadGL();
-	glViewport(0, 0, 800, 800);
+    GLFWwindow* window = glfwCreateWindow(1920, 1080, "Sirius GCS", nullptr, nullptr);
+    if (window == nullptr) {
+        GCS_LOG_ERROR("Failed to create GLFW window");
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
 
-	ImGuiManager::init(window);
+    gladLoadGL();
+    glViewport(0, 0, 800, 800);
 
-	GCS_LOG_TRACE("Starting program");
+    ImGuiManager::init(window);
 
-	while (!glfwWindowShouldClose(window))
-	{
-		glClearColor(0, 0, 0.1f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+    GCS_LOG_TRACE("Starting program");
 
-		ImGuiManager::render();
+    while (!glfwWindowShouldClose(window)) {
+        glClearColor(0, 0, 0.1F, 1.0F);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	}
+        ImGuiManager::render();
 
-	ImGuiManager::shutdown();
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
+    ImGuiManager::shutdown();
 
-	GCS_LOG_TRACE("Terminating program");
+    glfwDestroyWindow(window);
+    glfwTerminate();
+
+    GCS_LOG_TRACE("Terminating program");
 }

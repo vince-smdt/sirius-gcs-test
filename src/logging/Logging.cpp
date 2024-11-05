@@ -1,18 +1,18 @@
 #include "Logging.h"
 
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/sinks/basic_file_sink.h>
-
 #include "ImGuiTextBufferSink.h"
 
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
 namespace Logging {
-    std::vector<spdlog::sink_ptr> _sinks;
+std::vector<spdlog::sink_ptr> _sinks;
 }
 
 void Logging::initSpdLog() {
     const auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     const auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/gcs-log.txt");
-    _sinks = { console_sink, file_sink };
+    _sinks = {console_sink, file_sink};
     updateSpdLog();
 }
 
@@ -23,7 +23,7 @@ void Logging::updateSpdLog() {
     spdlog::flush_every(std::chrono::seconds(5));
 }
 
-void Logging::linkLoggingWindow(LoggingWindow *loggingWindow) {
+void Logging::linkLoggingWindow(LoggingWindow* loggingWindow) {
     const auto imgui_sink = std::make_shared<ImGuiTextBufferSink>(loggingWindow);
     _sinks.push_back(imgui_sink);
     updateSpdLog();

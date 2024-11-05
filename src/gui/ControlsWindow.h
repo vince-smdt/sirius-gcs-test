@@ -6,4 +6,4 @@ public:
     void draw();
 };
 
-#endif //CONTROLSWINDOW_H
+#endif // CONTROLSWINDOW_H

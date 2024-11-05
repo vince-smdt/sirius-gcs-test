@@ -1,19 +1,21 @@
 #ifndef IMGUIMANAGER_H
 #define IMGUIMANAGER_H
-
-#include <GLFW/glfw3.h>
-#include <memory>
-
 #include "ControlsWindow.h"
 #include "LoggingWindow.h"
 
+// clang-format off
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <memory>
+// clang-format on
+
 namespace ImGuiManager {
-    void init(GLFWwindow* window);
-    void render();
-    void shutdown();
+void init(GLFWwindow* window);
+void render();
+void shutdown();
 
-    extern std::unique_ptr<ControlsWindow> controlsWindow;
-    extern std::unique_ptr<LoggingWindow> loggingWindow;
-}
+extern std::unique_ptr<ControlsWindow> controlsWindow;
+extern std::unique_ptr<LoggingWindow> loggingWindow;
+} // namespace ImGuiManager
 
-#endif //IMGUIMANAGER_H
+#endif // IMGUIMANAGER_H
