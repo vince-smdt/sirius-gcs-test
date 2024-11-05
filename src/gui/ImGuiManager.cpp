@@ -5,6 +5,7 @@
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
+#include <implot.h>
 
 namespace ImGuiManager {
 std::unique_ptr<ControlsWindow> controlsWindow;
@@ -19,6 +20,8 @@ void ImGuiManager::init(GLFWwindow* window) {
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
+
+    ImPlot::CreateContext();
 
     controlsWindow = std::make_unique<ControlsWindow>();
     loggingWindow = std::make_unique<LoggingWindow>();
@@ -41,6 +44,8 @@ void ImGuiManager::render() {
 void ImGuiManager::shutdown() {
     controlsWindow = nullptr;
     loggingWindow = nullptr;
+
+    ImPlot::DestroyContext();
 
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
