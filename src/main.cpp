@@ -2,9 +2,18 @@
 #include "Logging.h"
 
 #include <GLFW/glfw3.h>
+#include <WinSock2.h>
+#include <windows.h>
+#pragma comment(lib, "ws2_32.lib")
 
 int main() {
     Logging::initSpdLog();
+
+    WSADATA wsaData;
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        GCS_LOG_ERROR("WSAStartup failed");
+        return -1;
+    }
 
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -40,6 +49,8 @@ int main() {
 
     glfwDestroyWindow(window);
     glfwTerminate();
+
+    WSACleanup();
 
     GCS_LOG_TRACE("Terminating program");
 }

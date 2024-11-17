@@ -1,5 +1,6 @@
 {
     "dependencies": [
+        "curl",
         "glad",
         "glfw3",
         {
@@ -10,6 +11,7 @@
             ]
         },
         "implot",
-        "spdlog"
+        "spdlog",
+        "stb"
     ]
 }

@@ -17,6 +17,8 @@ project "sirius-gcs"
 
     files { "src/**.h", "src/**.cpp" }
 
+    defines { "STB_IMAGE_IMPLEMENTATION" }
+
     filter "system:windows"
         buildoptions {
             "/utf-8",

@@ -1,7 +1,5 @@
 #include "ControlsWindow.h"
 
-#include "MapPlot.h"
-
 #include <imgui.h>
 #include <implot.h>
 
@@ -15,5 +13,6 @@ void ControlsWindow::draw() {
         ImPlot::PlotLine("Static Data", x, y, IM_ARRAYSIZE(x));
         ImPlot::EndPlot();
     }
+    _mapPlot.paint();
     ImGui::End();
 }

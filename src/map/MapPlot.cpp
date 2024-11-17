@@ -1,7 +1,7 @@
 #include "MapPlot.h"
 
 #include "Coords.h"
-// #include "ImOsmTileLoaderImpl.h"
+#include "TileLoaderImpl.h"
 
 #include <algorithm>
 #include <implot.h>
@@ -23,7 +23,7 @@ struct MapPlot::Impl {
     ImVec2 plotSize{};
 };
 
-MapPlot::MapPlot() : _impl{std::make_unique<Impl>()}, _loader{/* std::make_shared<TileLoaderOsmMap>() */} {
+MapPlot::MapPlot() : _impl{std::make_unique<Impl>()}, _loader{std::make_shared<TileLoaderArcMap>()} {
 }
 
 MapPlot::MapPlot(std::shared_ptr<ITileLoader>& loader)
@@ -91,7 +91,7 @@ void MapPlot::paint() {
         _minTY = std::clamp(int(_minY * _tilesNum), 0, _tilesNum - 1);
         _maxTY = std::clamp(int(_maxY * _tilesNum), 0, _tilesNum - 1);
 
-        // _loader->beginLoad(_zoom, _minTX, _maxTX, _minTY, _maxTY);
+        _loader->beginLoad(_zoom, _minTX, _maxTX, _minTY, _maxTY);
 
         ImVec2 bmin{float(_minTX), float(_minTY)};
         ImVec2 bmax{float(_maxTX), float(_maxTY)};
@@ -102,11 +102,11 @@ void MapPlot::paint() {
             for (auto y{_minTY}; y != _maxTY + 1; ++y) {
                 bmin.y = float(y) * _tileSize;
                 bmax.y = float(y + 1) * _tileSize;
-                // ImPlot::PlotImage("##", _loader->tileAt(_zoom, x, y), bmin, bmax, _impl->uv0, _impl->uv1, _impl->tint);
+                ImPlot::PlotImage("##", _loader->tileAt(_zoom, x, y), bmin, bmax, _impl->uv0, _impl->uv1, _impl->tint);
             }
         }
 
-        // _loader->endLoad();
+        _loader->endLoad();
 
         paintOverMap();
 
