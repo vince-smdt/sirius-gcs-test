@@ -1,5 +1,7 @@
 #include "ControlsWindow.h"
 
+#include "MapPlot.h"
+
 #include <imgui.h>
 #include <implot.h>
 

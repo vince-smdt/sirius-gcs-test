@@ -6,11 +6,13 @@ workspace "sirius-gcs"
 project "sirius-gcs"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++20"
     targetdir "out/%{cfg.buildcfg}"
 
     includedirs {
         "src/gui",
-        "src/logging"
+        "src/logging",
+        "src/map"
     }
 
     files { "src/**.h", "src/**.cpp" }
