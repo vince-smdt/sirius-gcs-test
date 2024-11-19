@@ -12,10 +12,15 @@ project "sirius-gcs"
     includedirs {
         "src/gui",
         "src/logging",
-        "src/map"
+        "src/map",
+        "external/mINI"
     }
 
-    files { "src/**.h", "src/**.cpp" }
+    files { 
+        "src/**.h",
+        "src/**.cpp",
+        "external/mINI/ini.h"
+    }
 
     defines { "STB_IMAGE_IMPLEMENTATION" }
 
