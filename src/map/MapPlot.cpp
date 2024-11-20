@@ -23,7 +23,7 @@ struct MapPlot::Impl {
     ImVec2 plotSize{};
 };
 
-MapPlot::MapPlot() : _impl{std::make_unique<Impl>()}, _loader{std::make_shared<TileLoaderArcMap>()} {
+MapPlot::MapPlot() : _impl{std::make_unique<Impl>()}, _loader{std::make_shared<TileLoaderOsmMap>()} {
 }
 
 MapPlot::MapPlot(std::shared_ptr<ITileLoader>& loader)

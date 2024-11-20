@@ -1,5 +1,8 @@
 #include "ControlsWindow.h"
 
+#include "Logging.h"
+#include "TileLoaderImpl.h"
+
 #include <imgui.h>
 #include <implot.h>
 
@@ -17,10 +20,34 @@ void ControlsWindow::draw() {
 
     ImGui::Begin("Controls");
     ImGui::Button("Launch la fusée");
+
+    ImGui::Dummy(ImVec2{0.0f, 20.0f});
+
     if (ImPlot::BeginPlot("Line Plot")) {
         ImPlot::PlotLine("Static Data", x, y, IM_ARRAYSIZE(x));
         ImPlot::EndPlot();
     }
+
+    ImGui::Dummy(ImVec2{0.0f, 20.0f});
+
+    ImGui::Text("Type de vue: ");
+    ImGui::SameLine();
+    ImGui::RadioButton("Cartographique", &_mapView, MAP_VIEW);
+    ImGui::SameLine();
+    ImGui::RadioButton("Satellite", &_mapView, SATELLITE_VIEW);
+
+    if (_mapView != _prevMapView) {
+        if (_mapView == MAP_VIEW) {
+            _mapPlot->setTileLoader(std::make_shared<TileLoaderOsmMap>());
+        } else if (_mapView == SATELLITE_VIEW) {
+            _mapPlot->setTileLoader(std::make_shared<TileLoaderArcMap>());
+        }
+        _prevMapView = _mapView;
+    }
+
+    GCS_LOG_TRACE(_mapView);
+
     _mapPlot->paint();
+
     ImGui::End();
 }
