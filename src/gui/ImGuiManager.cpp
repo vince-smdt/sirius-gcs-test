@@ -45,6 +45,8 @@ void ImGuiManager::shutdown() {
     controlsWindow = nullptr;
     loggingWindow = nullptr;
 
+    Logging::removeLoggingWindow();
+
     ImPlot::DestroyContext();
 
     ImGui_ImplOpenGL3_Shutdown();

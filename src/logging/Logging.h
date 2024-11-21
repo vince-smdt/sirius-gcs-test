@@ -9,6 +9,7 @@ namespace Logging {
 void initSpdLog();
 void updateSpdLog();
 void linkLoggingWindow(LoggingWindow* loggingWindow);
+void removeLoggingWindow();
 
 extern std::vector<spdlog::sink_ptr> _sinks;
 } // namespace Logging

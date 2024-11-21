@@ -28,3 +28,8 @@ void Logging::linkLoggingWindow(LoggingWindow* loggingWindow) {
     _sinks.push_back(imgui_sink);
     updateSpdLog();
 }
+
+void Logging::removeLoggingWindow() {
+    _sinks.pop_back(); // TODO - Store position of each type of sink, add option to remove whichever type of sink we want
+    updateSpdLog();
+}

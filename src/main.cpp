@@ -36,12 +36,14 @@ int main() {
     GCS_LOG_TRACE("Starting program");
 
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(0, 0, 0.1F, 1.0F);
-        glClear(GL_COLOR_BUFFER_BIT);
+        if (!glfwGetWindowAttrib(window, GLFW_ICONIFIED)) {
+            glClearColor(0, 0, 0.1F, 1.0F);
+            glClear(GL_COLOR_BUFFER_BIT);
 
-        ImGuiManager::render();
+            ImGuiManager::render();
 
-        glfwSwapBuffers(window);
+            glfwSwapBuffers(window);
+        }
         glfwPollEvents();
     }
 
