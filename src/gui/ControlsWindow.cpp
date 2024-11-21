@@ -45,8 +45,6 @@ void ControlsWindow::draw() {
         _prevMapView = _mapView;
     }
 
-    GCS_LOG_TRACE(_mapView);
-
     _mapPlot->paint();
 
     ImGui::End();

@@ -40,8 +40,8 @@ void LoggingWindow::draw() {
             ImGui::SetScrollHereY(1.0f);
         }
         ImGui::PopStyleVar();
-        ImGui::EndChild();
     }
+    ImGui::EndChild();
     ImGui::LogText("Bonjour");
     ImGui::End();
 }
