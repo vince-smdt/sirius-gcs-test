@@ -15,9 +15,28 @@ int main(int, char*[]) {
         return -1;
     }
 
-    ImGuiManager::init(nullptr);
+    ImGuiManager::init();
 
-    HelloImGui::Run([] { ImGuiManager::render(); }, "Sirius GCS", true);
+    HelloImGui::RunnerParams runnerParams;
+
+    runnerParams.appWindowParams.windowTitle = "Sirius GCS";
+    runnerParams.imGuiWindowParams.menuAppTitle = "Sirius GCS";
+    runnerParams.appWindowParams.windowGeometry.size = {1920, 1080};
+    runnerParams.appWindowParams.restorePreviousGeometry = true;
+
+    runnerParams.appWindowParams.borderless = true;
+    runnerParams.appWindowParams.borderlessMovable = true;
+    runnerParams.appWindowParams.borderlessResizable = true;
+    runnerParams.appWindowParams.borderlessClosable = true;
+
+    runnerParams.imGuiWindowParams.showMenuBar = true;
+
+    runnerParams.callbacks.ShowGui = ImGuiManager::render;
+
+    runnerParams.imGuiWindowParams.defaultImGuiWindowType = HelloImGui::DefaultImGuiWindowType::ProvideFullScreenDockSpace;
+    // runnerParams.imGuiWindowParams.enableViewports = true;
+
+    HelloImGui::Run(runnerParams);
 
     ImGuiManager::shutdown();
 

@@ -10,7 +10,7 @@
 // clang-format on
 
 namespace ImGuiManager {
-void init(GLFWwindow* window);
+void init();
 void render();
 void shutdown();
 

@@ -10,7 +10,7 @@ std::unique_ptr<ControlsWindow> controlsWindow;
 std::unique_ptr<LoggingWindow> loggingWindow;
 } // namespace ImGuiManager
 
-void ImGuiManager::init(GLFWwindow* window) {
+void ImGuiManager::init() {
     ImPlot::CreateContext();
 
     controlsWindow = std::make_unique<ControlsWindow>();
