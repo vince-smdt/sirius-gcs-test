@@ -1,3 +1,4 @@
+#include "Altimeter/AltimeterData.h"
 #include "ImGuiManager.h"
 #include "Logging.h"
 #include "hello_imgui/hello_imgui.h"
@@ -14,6 +15,12 @@ int main(int, char*[]) {
         GCS_LOG_ERROR("WSAStartup failed");
         return -1;
     }
+
+    AltimeterData data = {1, 2, 3};
+    GCS_LOG_INFO("The following is AltimeterData:");
+    GCS_LOG_INFO(data.altitude);
+    GCS_LOG_INFO(data.status.value);
+    GCS_LOG_INFO(data.timeStamp_ms);
 
     ImGuiManager::init();
 
@@ -34,7 +41,6 @@ int main(int, char*[]) {
     runnerParams.callbacks.ShowGui = ImGuiManager::render;
 
     runnerParams.imGuiWindowParams.defaultImGuiWindowType = HelloImGui::DefaultImGuiWindowType::ProvideFullScreenDockSpace;
-    // runnerParams.imGuiWindowParams.enableViewports = true;
 
     HelloImGui::Run(runnerParams);
 

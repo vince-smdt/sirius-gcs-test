@@ -13,13 +13,15 @@ project "sirius-gcs"
         "src/gui",
         "src/logging",
         "src/map",
-        "external/mINI"
+        "external/mINI",
+        "external/sirius-headers-common"
     }
 
     files { 
         "src/**.h",
         "src/**.cpp",
-        "external/mINI/ini.h"
+        "external/mINI/ini.h",
+        "external/sirius-headers-common/**.h"
     }
 
     defines { "STB_IMAGE_IMPLEMENTATION" }
