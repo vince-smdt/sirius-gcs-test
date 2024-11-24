@@ -22,6 +22,7 @@ permissions:
 
 jobs:
   build:
+    name: Build & Run Tests
     runs-on: windows-latest
 
     steps:
@@ -36,23 +37,6 @@ jobs:
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild ${{env.BUILD_SOLUTION_FILE}} /m /t:${{env.BUILD_PROJECT_NAME}} /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}}
-
-  run-tests:
-    runs-on: windows-latest
-    needs: build
-
-    steps:
-    - name: Test 1
-      run: dir .
-
-    - name: Test 2
-      run: dir out
-
-    - name: Test 3
-      run: dir out\bin
-
-    - name: Test 4
-      run: dir out\bin\Release
 
     - name: Run Tests
       run: .\out\bin\Release\sirius-gcs-tests.exe
