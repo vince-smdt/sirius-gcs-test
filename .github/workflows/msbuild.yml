@@ -42,5 +42,17 @@ jobs:
     needs: build
 
     steps:
+    - name: Test 1
+      run: dir .
+
+    - name: Test 2
+      run: dir out
+
+    - name: Test 3
+      run: dir out\bin
+
+    - name: Test 4
+      run: dir out\bin\Release
+
     - name: Run Tests
       run: .\out\bin\Release\sirius-gcs-tests.exe
