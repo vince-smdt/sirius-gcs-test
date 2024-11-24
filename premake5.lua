@@ -7,7 +7,7 @@ workspace "sirius-gcs"
     language "C++"
     cppdialect "C++20"
     targetdir "out/bin/%{cfg.buildcfg}"
-    objdir "out/obj/%{cfg.buildcfg}"
+    objdir "out/obj"
     
     filter "configurations:Debug"
         symbols "On"
